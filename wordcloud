@@ -1,0 +1,41 @@
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+# from nltk import tokenize
+# from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+import matplotlib
+from matplotlib import font_manager,rc
+
+from openpyxl import Workbook
+import matplotlib.pyplot as plt 
+from wordcloud import WordCloud, STOPWORDS
+
+# msg='''
+# 것은 어머님, 다 asdg이네들은 까닭입니다. 789789이름과, 북간도에 무엇인지어머님 한 내일 이름과 남은 어머님 있습니다.
+
+# 때 가을로 북간도어머님에 하나 그러나 묻힌 책상을 봅니다. 아침이 다 sdfsdfsdf789 않은 속의 다 봅니다. 이런 남은 어머님 그리워 별 차 있습니다. 오면 이9564847 다하지어머님 봄이 아직 지나고 당신은 까닭입니다.
+
+# 하나에 강아지, 멀agsdg듯이, 때 어머님있습니다. 된 잔디가 불러 까닭입니다. sdfsfasd강아지, 이웃어머님 가득 나의 거외다. 하늘에는 가을 비둘기, 어머님슬퍼하는 이런 파란 된 봅니다.
+# '''
+
+# file = open('test.txt','r', encoding = 'utf-8')
+file = open('G:\workpy\zoom\KakaoTalk.txt','r', encoding = 'utf-8') #경로를 자세하게 설정해줘야 읽어짐. 
+rfile=file.read()
+# print(msg)
+print(rfile)
+
+font_name = font_manager.FontProperties(fname='c:/Windows/fonts/malgun.ttf').get_name()
+matplotlib.rc('font', family=font_name)
+
+spwords =set(STOPWORDS)
+wc1=WordCloud(max_font_size=300,
+    stopwords=spwords,font_path='c:/Windows/fonts/malgun.ttf',background_color='yellow', width=800, height=800)
+
+# wc1.generate(msg)
+wc1.generate(rfile)
+
+plt.imshow(wc1)
+plt.tight_layout(pad=0)
+plt.axis("off")
+
+plt.show() 
